@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -53,6 +53,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
+    var degreeSign = "\u00B0";
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -85,9 +86,9 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     height: 5,
                   ),
-                  const Text(
-                    "32",
-                    style: TextStyle(
+                  Text(
+                    "32" + degreeSign,
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
                         color: Colors.white),
@@ -102,7 +103,35 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-          )
+          ),
+          Expanded(
+              child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListView(
+              children: <Widget>[
+                ListTile(
+                  leading: const Icon(Icons.thermostat),
+                  title: const Text("Temperature"),
+                  trailing: Text("32" + degreeSign),
+                ),
+                const ListTile(
+                  leading: FaIcon(FontAwesomeIcons.cloud),
+                  title: Text("Weather"),
+                  trailing: FaIcon(FontAwesomeIcons.cloudRain),
+                ),
+                const ListTile(
+                  leading: FaIcon(FontAwesomeIcons.wind),
+                  title: Text("Wind Speed"),
+                  trailing: Text("12 km/h"),
+                ),
+                const ListTile(
+                  leading: FaIcon(FontAwesomeIcons.sun),
+                  title: Text("Humidity"),
+                  trailing: Text("90%"),
+                ),
+              ],
+            ),
+          )),
         ],
       ),
     );
